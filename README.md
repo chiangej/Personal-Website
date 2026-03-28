@@ -1,20 +1,42 @@
-# Personal website (GitHub Pages)
+# Personal website (React + Vite)
 
-Static personal homepage for coursework. Open `index.html` locally or deploy from this repository.
+Personal homepage built with **React** and **Vite**, deployable to **GitHub Pages**.
 
-## Deploy on GitHub Pages
+## Local development
 
-1. Push this repo to GitHub (see commands below).
-2. In the repository on GitHub: **Settings → Pages**.
-3. Under **Build and deployment**, set **Source** to **Deploy from a branch**.
-4. Choose branch **`main`** and folder **`/ (root)`**, then **Save**.
+```bash
+npm install
+npm run dev
+```
 
-Your site will be available at:
+Open the URL Vite prints (with `base: '/Personal_Website/'`, use  
+`http://localhost:5173/Personal_Website/`).
 
-`https://<your-github-username>.github.io/<repository-name>/`
+## Production build (local check)
 
-Replace with your actual username and repo name after you create the repository.
+```bash
+npm run build
+npm run preview
+```
 
-## Local preview
+Then open the preview URL **including** the `/Personal_Website/` path.
 
-Open `index.html` in a browser, or run a small static server from this folder.
+## Deploy to GitHub Pages
+
+1. **`vite.config.js`** — `base` is set to `/Personal_Website/` so asset paths match  
+   `https://<username>.github.io/Personal_Website/`.  
+   If you rename the repository, change `base` to `/<new-repo-name>/`.
+
+2. **Repository Settings → Pages**  
+   - **Source**: **GitHub Actions** (not “Deploy from a branch”).  
+   - Push to `main`; the workflow **Deploy site to GitHub Pages** builds `dist` and publishes it.
+
+3. After the workflow succeeds, the site URL is:
+
+   `https://<your-github-username>.github.io/Personal_Website/`
+
+## Files
+
+- `src/App.jsx` — page content  
+- `src/App.css` — styles  
+- `.github/workflows/deploy-pages.yml` — CI build + Pages deploy  
