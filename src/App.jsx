@@ -1,5 +1,6 @@
 import { useMemo, useState } from "react";
 import { getFortuneForLocalDate } from "./fortuneData.js";
+import UserPage from "./UserPage.jsx";
 
 const year = new Date().getFullYear();
 
@@ -118,6 +119,12 @@ function SectionHead({ title, kicker }) {
 }
 
 export default function App() {
+  const [currentPage, setCurrentPage] = useState("home");
+
+  if (currentPage === "users") {
+    return <UserPage onNavigate={setCurrentPage} />;
+  }
+
   return (
     <div className="page">
       <span className="page__motif page__motif--1" aria-hidden="true" />
@@ -141,6 +148,12 @@ export default function App() {
             <a href="#interests">Study</a>
             <a href="#fortune">Fortune</a>
             <a href="#goals">Goals</a>
+            <button
+              className="nav-text-btn"
+              onClick={() => setCurrentPage("users")}
+            >
+              Users
+            </button>
           </nav>
         </div>
       </header>
